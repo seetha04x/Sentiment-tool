@@ -1,0 +1,61 @@
+<% layout("/layout/boilerplate") %>
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Institutional Feedback Analytics</h2>
+        <a href="/process" class="btn btn-primary">⚡ Run Sentiment Pipeline</a>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <a href="/feedback/all">
+            <div class="card bg-light text-dark p-3 text-center">
+                <h5>Total Submissions</h5>
+                <h3><%= stats.total %></h3>
+            </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-success text-white p-3 text-center">
+                <h5>Positive Sentiments</h5>
+                <h3><%= stats.positive %></h3>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-danger text-white p-3 text-center">
+                <h5>Negative Sentiments</h5>
+                <h3><%= stats.negative %></h3>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-warning text-dark p-3 text-center">
+                <h5>Pending Batch</h5>
+                <h3><%= stats.unprocessed %></h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart Visualization Section -->
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card p-3">
+                <h5 class="text-center mb-3">Overall Sentiment Breakdown</h5>
+                <div style="position: relative; height: 300px; width: 100%;">
+                    <!-- Pass EJS values via data- attributes -->
+                    <canvas 
+                        id="sentimentChart"
+                        data-positive="<%= stats.positive %>"
+                        data-negative="<%= stats.negative %>"
+                        data-neutral="<%= stats.neutral %>"
+                        data-unprocessed="<%= stats.unprocessed %>">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Fixed script src path -->
+<script src="/js/chart.js"></script>

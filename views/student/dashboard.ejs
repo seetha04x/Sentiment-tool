@@ -1,0 +1,20 @@
+<% layout("/layout/boilerplate") %>
+
+<div class="container mt-4">
+    <!-- Welcome Header -->
+    <div class="p-4 mb-4 bg-light rounded-3 shadow-sm">
+        <div class="container-fluid py-2">
+            <h1 class="display-6 fw-bold">Welcome, <%= currUser.username %>!</h1>
+            <p class="col-md-8 fs-5 text-muted">
+                Department: <span class="badge bg-secondary"><%= currUser.department %></span>
+            </p>
+            <a href="/feedback/new" class="btn btn-primary btn-lg mt-2">
+                ✍️ Submit New Feedback
+            </a>
+        </div>
+    </div>
+
+    <!-- Student Submission History -->
+    
+    
+</div>

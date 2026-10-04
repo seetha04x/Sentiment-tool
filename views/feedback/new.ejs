@@ -1,0 +1,52 @@
+<% layout("/layout/boilerplate") %>
+  <h2>Feedback Form</h2>
+  <form action="/feedback" method="POST" class="needs-validation" novalidate>
+
+    <!-- Category -->
+    <div class="mb-3">
+      <label for="category" class="form-label">Category</label>
+      <select name="category" id="category" class="form-select" required>
+        <option value="">Select category</option>
+        <option value="faculty">Faculty</option>
+        <option value="facilities">Facilities</option>
+        <option value="subject">Subject</option>
+      </select>
+      <div class="invalid-feedback">Please select a category.</div>
+    </div>
+
+    <!-- Target Name -->
+    <div class="mb-3">
+      <label for="targetName" class="form-label">Target Name</label>
+      <input type="text" name="targetName" id="targetName" class="form-control" required>
+      <div class="invalid-feedback">Target name is required.</div>
+    </div>
+
+    <!-- Department -->
+    <div class="mb-3">
+      <label for="department" class="form-label">Department</label>
+      <input type="text" name="department" id="department" class="form-control" value="General" required>
+      <div class="invalid-feedback">Department is required.</div>
+    </div>
+
+    <!-- Feedback -->
+    <div class="mb-3">
+      <label for="feedback" class="form-label">Feedback</label>
+      <textarea name="feedback" id="feedback" class="form-control" rows="4"></textarea>
+    </div>
+
+    <!-- Rating -->
+    <div class="mb-3">
+      <label for="rating" class="form-label">Rating (1–5)</label>
+      <input type="number" name="rating" id="rating" class="form-control" min="1" max="5">
+    </div>
+
+
+    <!-- Submit -->
+    <button type="submit" class="btn btn-primary">Submit Feedback</button>
+    <a href="/dashboard/student" class="btn btn-secondary">Back to Dashboard</a>
+  </form>
+
+  <!-- Bootstrap validation script -->
+  <script src="/js/validation.js"></script>
+
+

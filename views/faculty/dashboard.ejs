@@ -1,0 +1,79 @@
+<% layout("/layout/boilerplate") %>
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2>Faculty Portal</h2>
+            <p class="text-muted mb-0">Overview for <strong><%= currUser.username %></strong> (<%= currUser.department %>)</p>
+        </div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card bg-light p-3 text-center shadow-sm">
+                <h6 class="text-muted">Total Reviews Received</h6>
+                <h2 class="fw-bold"><%= stats ? stats.total : 0 %></h2>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card bg-success text-white p-3 text-center shadow-sm">
+                <h6>Positive Sentiments</h6>
+                <h2 class="fw-bold"><%= stats ? stats.positive : 0 %></h2>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card bg-danger text-white p-3 text-center shadow-sm">
+                <h6>Areas for Improvement (Negative)</h6>
+                <h2 class="fw-bold"><%= stats ? stats.negative : 0 %></h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feedback List -->
+    <div class="card shadow-sm">
+        <div class="card-header bg-white">
+            <h5 class="mb-0">Student Comments & Ratings</h5>
+        </div>
+        <div class="card-body p-0">
+            <% if (facultyFeedbacks && facultyFeedbacks.length > 0) { %>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Category</th>
+                                <th>Feedback Content</th>
+                                <th>Rating</th>
+                                <th>Sentiment</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% facultyFeedbacks.forEach(item => { %>
+                                <tr>
+                                    <td><span class="badge bg-secondary"><%= item.category %></span></td>
+                                    <td><%= item.feedback %></td>
+                                    <td><strong><%= item.rating %>/5</strong></td>
+                                    <td>
+                                        <% if (item.status === 'positive') { %>
+                                            <span class="badge bg-success">Positive</span>
+                                        <% } else if (item.status === 'negative') { %>
+                                            <span class="badge bg-danger">Negative</span>
+                                        <% } else { %>
+                                            <span class="badge bg-secondary"><%= item.status %></span>
+                                        <% } %>
+                                    </td>
+                                    <td><small class="text-muted"><%= new Date(item.createdAt).toLocaleDateString() %></small></td>
+                                </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+            <% } else { %>
+                <div class="p-4 text-center text-muted">
+                    No feedback entries found for your target name/department yet.
+                </div>
+            <% } %>
+        </div>
+    </div>
+</div>

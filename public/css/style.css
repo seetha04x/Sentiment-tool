@@ -1,0 +1,10 @@
+.feedback-card {
+            transition: transform 0.2s ease-in-out;
+        }
+        .feedback-card:hover {
+            transform: scale(1.02);
+        }
+        .status-neutral { border-left: 6px solid #6c757d; }
+        .status-positive { border-left: 6px solid #28a745; }
+        .status-negative { border-left: 6px solid #dc3545; }
+        .status-unprocessed { border-left: 6px solid #ffc107; }

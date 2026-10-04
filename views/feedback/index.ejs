@@ -1,0 +1,57 @@
+<% layout("/layout/boilerplate") %>
+
+
+    <div class="container py-5">
+        <h1 class="text-center mb-4">📋 All Feedbacks</h1>
+
+        <% if(all.length === 0) { %>
+            <div class="alert alert-info text-center">
+                No feedback records found.
+            </div>
+        <% } else { %>
+            <div class="row">
+                <% all.forEach(fb => { %>
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="card feedback-card 
+                            <% if(fb.status === 'positive'){ %> status-positive <% } %>
+                            <% if(fb.status === 'negative'){ %> status-negative <% } %>
+                            <% if(fb.status === 'neutral'){ %> status-neutral <% } %>
+                            <% if(fb.status === 'unprocessed'){ %> status-unprocessed <% } %>">
+                            
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <%= fb.category.charAt(0).toUpperCase() + fb.category.slice(1) %> Feedback
+                                </h5>
+                                <h6 class="card-subtitle mb-2 text-muted">
+                                    Target: <%= fb.targetName %>
+                                </h6>
+                                <p class="card-text">
+                                    <strong>Department:</strong> <%= fb.department %><br>
+                                    <strong>Feedback:</strong> <%= fb.feedback || "No detailed feedback provided." %>
+                                </p>
+                                <p>
+                                    <strong>Rating:</strong> 
+                                    <% for(let i=1; i<=5; i++){ %>
+                                        <% if(i <= fb.rating){ %>
+                                            ⭐
+                                        <% } else { %>
+                                            ☆
+                                        <% } %>
+                                    <% } %>
+                                </p>
+                                <p>
+                                    <strong>Status:</strong> <span class="badge bg-secondary"><%= fb.status %></span><br>
+                                    <strong>Sentiment Score:</strong> <%= fb.sentimentScore %>
+                                </p>
+                                <p class="text-muted small">
+                                    Submitted on: <%= fb.createdAt.toDateString() %>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        <% } %>
+        <a href="/dashboard/admin" class="btn btn-secondary">Back to Dashboard</a>
+    </div>
+

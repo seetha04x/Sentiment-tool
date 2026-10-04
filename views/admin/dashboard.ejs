@@ -1,0 +1,63 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container mt-4">
+    <!-- Header with Pipeline Control -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2>Institutional Feedback Analytics</h2>
+            <p class="text-muted mb-0">System-wide sentiment breakdown and processing</p>
+        </div>
+        <a href="/process" class="btn btn-primary btn-lg shadow-sm">
+            ⚡ Run Sentiment Pipeline
+        </a>
+    </div>
+
+    <!-- Metric Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card bg-light p-3 text-center shadow-sm">
+                <h6 class="text-muted">Total Submissions</h6>
+                <h3 class="fw-bold"><%= stats.total %></h3>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-success text-white p-3 text-center shadow-sm">
+                <h6>Positive Sentiments</h6>
+                <h3 class="fw-bold"><%= stats.positive %></h3>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-danger text-white p-3 text-center shadow-sm">
+                <h6>Negative Sentiments</h6>
+                <h3 class="fw-bold"><%= stats.negative %></h3>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-warning text-dark p-3 text-center shadow-sm">
+                <h6>Pending Batch</h6>
+                <h3 class="fw-bold"><%= stats.unprocessed %></h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart Visualizer -->
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card p-4 shadow-sm">
+                <h5 class="text-center mb-3">Overall Sentiment Breakdown</h5>
+                <div style="position: relative; height: 320px; width: 100%;">
+                    <canvas 
+                        id="sentimentChart"
+                        data-positive="<%= stats.positive %>"
+                        data-negative="<%= stats.negative %>"
+                        data-neutral="<%= stats.neutral %>"
+                        data-unprocessed="<%= stats.unprocessed %>">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Static Chart Script -->
+<script src="/js/chart.js"></script>
