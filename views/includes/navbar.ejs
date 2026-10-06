@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/dashboard">Feedback Tool</a>
+    <a class="navbar-brand" style="font-size: 2.1rem;padding-left: 2rem;" href="/dashboard">Feedback Tool</a>
     
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -26,11 +26,10 @@
               <a class="nav-link" href="/process">⚡ Run Pipeline</a>
             </li>
           <% } %>
-
         <% } %>
       </ul>
 
-      <ul class="navbar-nav ms-auto">
+      <ul class="navbar-nav ms-auto" style="font-size: 1.5rem; padding-right: 2rem;">
         <% if (!currUser) { %>
           <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
           <li class="nav-item"><a class="nav-link" href="/signup">Sign Up</a></li>

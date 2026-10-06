@@ -8,7 +8,8 @@ module.exports.triggerPySparkPipeline = async (req, res) => {
         
         console.log("success");
         res.redirect("/dashboard/admin");
-    } catch (err) {
+    } 
+    catch (err) {
         console.error("Pipeline trigger failed:", err.message);
         console.log("failure");
         res.redirect("/dashboard/admin");
